@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+	#div1 input{background: white}
+	#div1 input.active { background: yellow }
+	#div1 div {display: none;border:1px solid black;width: 500px;height: 500px}
+	#div1 div.active {display: block}
+</style>
+<script type="text/javascript">
+	function TabSwitch( id )
+	{
+		var oDiv = document.getElementById(id)
+		var _this = this
+		this.aBtn = oDiv.getElementsByTagName('input')
+		this.aDiv = oDiv.getElementsByTagName('div')
+
+		for( var i = 0 ; i < this.aBtn.length; i++ )
+		{
+			this.aBtn[i].index = i
+			this.aBtn[i].onclick = function ()
+			{
+				_this.fnClick(this)
+			}
+		}
+	}
+
+	TabSwitch.prototype.fnClick = function (click_oBtn)
+	{
+		for(var i = 0 ; i < this.aBtn.length; i++)
+		{
+			this.aBtn[i].className = ''
+			this.aDiv[i].style.display = 'none'
+		}
+
+		click_oBtn.className = 'active'
+		this.aDiv[click_oBtn.index].style.display = 'block'
+	}
+
+	window.onload = function ()
+	{
+		new TabSwitch('div1')
+	}
+</script>
+</head>
+<body>
+	<div id="div1">
+		<input class="active" type="button" name="" value="aaa">
+		<input type="button" name="" value="bbb">
+		<input type="button" name="" value="ccc">
+		<div class="active">aaa</div>
+		<div>bbb</div>
+		<div>ccc</div>
+	</div>
+</body>
+</html>

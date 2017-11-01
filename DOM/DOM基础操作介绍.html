@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		window.onload = function ()
+		{
+			// childNodes => dom的子节点，返回数组 其中包括（直接子元素元素节点+文本节点）
+
+			// nodeType   => dom节点类型  元素节点==1 ；文本节点==3
+
+			// children => dom的元素子节点，返回数组   =>推荐
+
+			// parentNode => 元素节点的父节点  返回父节点dom
+
+			// offsetParent => 返回相对于这个节点的相对定位的父节点dom
+
+			var oDiv = document.getElementById('div1')
+
+			alert(oDiv.childNodes.length) // =>3  3个节点 2文本节点+1个ul节点
+			alert(oDiv.children.length)   // =>1  1个节点  ul
+			alert(oDiv.parentNode)        // => bodyDOM
+			alert(oDiv.offsetParent)      // 没有设置父元素的绝对定位，返回bodyDOM
+
+
+			//首尾子节点
+			// ie6-8 => firstChild   高版本浏览器 => firstELementChild
+			// ie6-8 => lastChild    高版本浏览器 => lastELementChild
+
+			//兄弟节点
+			// ie6-8 => nextSibling     高版本浏览器 => nextElementSibling
+			// ie6-8 => previousSibling 高版本浏览器 => previousElementSibling
+			
+
+			console.log(oDiv.firstChild)        // => 返回第一个文本节点
+			console.log(oDiv.firstElementChild) //=> 返回第一个元素节点ul
+
+			var aLi = oDiv.getElementsByTagName('li')
+			var firstLi = aLi[0]
+			console.log(firstLi.nextSibling)    //=> 返回下一个文本节点
+			console.log(firstLi.nextElementSibling) //=> 返回下一个元素节点li
+
+			// ie与高级浏览器兼容处理
+
+			if(firstLi.nextSibling.background)  //如果存在代表ie6-8  低版本
+			{
+				firstLi.nextSibling.style.background = 'red'
+				//这里高版本浏览器会默认选上空格的文本节点
+			}
+			else  //高版本浏览器，需要指定选择元素节点
+			{
+				firstLi.nextElementSibling.style.background = 'red'
+			}	
+
+		}
+	</script>
+</head>
+<body>
+	<div id="div1">
+		<ul>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+</body>
+</html>

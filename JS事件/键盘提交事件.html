@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		window.onload = function ()
+		{
+			var oBtn = document.getElementById('btn1')
+			var oTxt = document.getElementById('text1')
+			var oTxt2 = document.getElementById('text2')
+
+			oBtn.onclick = function(e)
+			{
+				oTxt2.innerHTML += oTxt.value + '<br>'
+			}
+
+			oTxt.onkeydown = function (e)
+			{
+				var ev = e || event
+				if(ev.keyCode == 13 && ev.ctrlKey) 
+				{	
+					console.log("你按回车了")
+					oTxt2.innerHTML += oTxt.value + "\n"
+					this.value = ''
+					//  \n 换行
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+	<input type="text" name="" id="text1">
+	<input type="button" value="发布" id="btn1" name=""><br>
+
+	<textarea cols="40" rows="4" id="text2"></textarea>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		function Aa()
+		{
+			this.a = 12;
+			this.b = 15;
+		}
+		Aa.prototype.show = function ()
+		{
+			alert(this.a+this.b)
+		}
+		var aaa = new Aa()
+		// console.log(aaa.a)
+
+
+		// 继承
+		function Bb()
+		{
+			Aa.call(this)  //将Aa的构造函数属性方法传给this  this就是这里的函数
+		}
+		var bbb = new Bb()
+		// console.log(bbb.b)
+		// （原型上的没有继承）
+
+		// 要继承原型上的方法并且不修改父级的方法
+		for( var i in Aa.prototype )
+		{
+			Bb.prototype[i] = Aa.prototype[i]   //将Aa原型里面的所有方法通过循环赋值给 Bb  就不会改变原来的属性
+		}
+
+		bbb.show()
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

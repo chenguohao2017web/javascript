@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		window.onload = function ()
+		{
+			var oUl = document.getElementById('ul1')
+			var aLi = oUl.getElementsByTagName('li')
+
+			// for ( var i = 0 ; i < aLi.length; i++) 
+			// {
+			// 	if(aLi[i].className == 'box')
+			// 	{
+			// 		aLi[i].style.background = 'red'
+			// 	}
+			// }
+
+			var aObj = getClassArray(oUl,'box')
+			
+			for ( var i = 0; i < aObj.length; i ++) 
+			{
+				aObj[i].style.background = 'red'
+			}
+		}
+
+		function getClassArray(oParent,sClassName)
+		{
+			var aEl = oParent.getElementsByTagName('*')
+			var aResult = []
+
+			for ( var i = 0 ; i < aEl.length; i++)
+			{
+				if(aEl[i].className==sClassName)
+				{
+					aResult.push(aEl[i])
+				}
+			}
+			return aResult
+		}
+	</script>
+</head>
+<body>
+	<ul id="ul1">
+		<li></li>
+		<li></li>
+		<li class="box"></li>
+		<li class="box"></li>
+		<li class="box"></li>
+	</ul>
+</body>
+</html>

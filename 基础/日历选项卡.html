@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>日历选项卡</title>
+</head>
+<style type="text/css">
+	.active {
+		background: yellow;
+		color:black;
+	}
+	span {
+		display: inline-block;width: 50px;height: 50px;background: #ccc;color: white;
+	}
+</style>
+<script type="text/javascript">
+	(function(){
+
+		window.onload = function (){
+
+			var aBtn = document.getElementsByTagName('span')
+			var oDiv = document.getElementById('div1')
+			var arr=[
+			'1月很精彩',
+			'2月很精彩',
+			'3月很精彩',
+			'4月很精彩',
+			'5月很精彩',
+			'6月很精彩',
+			'7月很精彩',
+			'8月很精彩',
+			'9月很精彩',
+			'10月很精彩',
+			'11月很精彩',
+			'12月很精彩'
+			]
+
+			for(var i = 0; i<aBtn.length;i++)
+			{	
+				aBtn[i].index = i
+
+				aBtn[i].onmouseover = function ()
+				{
+					for(var i=0;i<aBtn.length;i++)
+					{
+						aBtn[i].className = aBtn[i].className.replace('active','')
+					}
+
+					this.className = 'active'
+
+					oDiv.innerHTML = "<h3>"+ (this.index +1) +"月</h3><p>"+ arr[this.index]  +"</p>"
+				}
+			}
+
+		}
+
+	})()
+</script>
+<body>
+	<span class="active">1月</span>
+	<span>2月</span>
+	<span>3月</span>
+	<span>4月</span>
+	<span>5月</span>
+	<span>6月</span>
+	<span>7月</span>
+	<span>8月</span>
+	<span>9月</span>
+	<span>10月</span>
+	<span>11月</span>
+	<span>12月</span>
+	<div id="div1">
+		<h3>1月</h3>
+		<p>1月很精彩</p>
+	</div>
+</body>
+</html>

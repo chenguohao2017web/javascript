@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		window.onload = function ()
+		{
+			var oBtn = document.getElementById('btn1')
+			var oName = document.getElementById('name')
+			var oAge = document.getElementById('age')
+			var oTab = document.getElementById('tab1')
+			var sId = oTab.tBodies[0].rows.length
+			var aRows = oTab.tBodies[0].rows
+			var sBg = ''
+			
+
+			oBtn.onclick = function ()
+			{
+				var oTr = document.createElement('tr')
+
+				var oTd = document.createElement('td')
+				oTd.innerHTML = ++sId
+				oTr.appendChild(oTd)
+				
+				var oTd = document.createElement('td')
+				oTd.innerHTML = oName.value
+				oTr.appendChild(oTd)
+
+				var oTd = document.createElement('td')
+				oTd.innerHTML = oAge.value
+				oTr.appendChild(oTd)
+
+				var oTd = document.createElement('td')
+				oTd.innerHTML = "<a href='javescript:;'>删除</a>"
+				oTr.appendChild(oTd)
+
+				//删除创建出来的
+				oTd.getElementsByTagName('a')[0].onclick = function()
+				{
+					var oTr = this.parentNode.parentNode //tr
+					oTab.tBodies[0].removeChild(oTr)
+				}
+
+				//将所有创建的内容添加到tbody子元素最后
+				oTab.tBodies[0].appendChild(oTr)  
+
+				
+				heightLightRow()  //各行高亮
+
+			}
+
+			//删除原本就存在的
+			var aA = oTab.getElementsByTagName('a')
+			for(var i = 0 ; i < aA.length;i++)
+			{
+				aA[i].onclick = function ()
+				{
+					var oTr = this.parentNode.parentNode //tr
+					oTab.tBodies[0].removeChild(oTr)
+				}
+			}
+
+			//隔行高亮
+			function heightLightRow() {
+				for (var i = 0 ; i < aRows.length; i++)
+				{
+					if(i%2==0)
+					{
+						aRows[i].style.background = '#ccc'
+					}
+					else
+					{
+						aRows[i].style.background = 'skyblue'
+					}
+
+					aRows[i].onmouseover = function ()
+					{	
+						sBg = this.style.background
+						this.style.background = 'yellow'
+					}
+					aRows[i].onmouseout = function ()
+					{
+						this.style.background = sBg
+					}
+				}
+			}
+
+			//搜索 关键字搜索，模糊搜索
+			var btn2 = document.getElementById('btn2')
+			var searchText = document.getElementById('searchText')
+
+			btn2.onclick = function ()
+			{
+				for(var i = 0; i < aRows.length; i++) {
+					var sTab = aRows[i].cells[1].innerHTML.toUpperCase()
+					var sText = searchText.value.toUpperCase()
+					var arr = sText.split(' ')
+
+					aRows[i].style.background = ''
+
+					for(var j=0; j<arr.length;j++) 
+					{
+						if( sTab.search(arr[j]) != -1 )
+						{
+							aRows[i].style.background = 'yellow'
+						}
+					}
+				}
+			}
+
+		heightLightRow()
+
+		}
+	</script>
+</head>
+<body>
+	姓名：<input type="text" id="name"> 
+	年龄：<input type="text" id="age">
+	<button id="btn1">添加</button><br>
+	<input type="text" id="searchText" name="">
+	<button id="btn2">搜索</button>
+	<table id="tab1" border="1" width="500">
+		<thead>
+			<td>id</td>
+			<td>姓名</td>
+			<td>年龄</td>
+			<td>操作</td>
+		</thead>
+		<tbody>
+			<tr>
+				<td>1</td>
+				<td>aaa</td>
+				<td>10</td>
+				<td><a href="javascript:;">删除</a></td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>bbb</td>
+				<td>12</td>
+				<td><a href="javascript:;">删除</a></td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>ggg</td>
+				<td>10</td>
+				<td><a href="javascript:;">删除</a></td>
+			</tr>
+			<tr>
+				<td>4</td>
+				<td>eee</td>
+				<td>12</td>
+				<td><a href="javascript:;">删除</a></td>
+			</tr>
+			<tr>
+				<td>5</td>
+				<td>ccc</td>
+				<td>10</td>
+				<td><a href="javascript:;">删除</a></td>
+			</tr>
+			<tr>
+				<td>6</td>
+				<td>fff</td>
+				<td>12</td>
+				<td><a href="javascript:;">删除</a></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

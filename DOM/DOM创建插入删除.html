@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		window.onload = function ()
+		{
+			var oUl = document.getElementById('ul1')
+			var oTxt = document.getElementsByName('text')[0]
+			var oBtn = document.getElementsByTagName('button')[0]
+
+			oBtn.onclick = function ()
+			{
+				var oLi = document.createElement('li')
+
+				oLi.innerHTML = oTxt.value
+				
+				var aLi = oUl.getElementsByTagName('li')
+
+				if(aLi.length > 0) {
+					oUl.insertBefore(oLi,aLi[0])
+					// 指定元素插入 父节点.insertBefore(子节点,插入位置的位置之前)
+				}
+				else
+				{
+					oUl.appendChild(oLi)
+	             //  元素末尾插入   父节点.appendChild(子节点)
+				}
+				
+			}
+				//删除元素节点
+			var oUl2 = document.getElementById('ul2')
+			var aA = oUl2.getElementsByTagName('a')
+
+			for(var i = 0; i < aA.length;i++)
+			{
+				aA[i].onclick = function()
+				{
+					oUl2.removeChild(this.parentNode)
+					//删除节点， 父节点.removeChild(子节点)
+				}
+			}
+
+		}
+	</script>
+</head>
+<body>
+	<input type="text" name="text">
+	<button>添加</button>
+	<ul id="ul1"></ul>
+
+	<ul id="ul2">
+		<li>12321312<a href="javascript:;">删除</a></li>
+		<li>sdfasdfd<a href="javascript:;">删除</a></li>
+		<li>sdfasdfd<a href="javascript:;">删除</a></li>
+		<li>sdfdsf<a href="javascript:;">删除</a></li>
+	</ul>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	li {
+		list-style: none;height: 20px
+	}
+</style>
+<script>
+	window.onload = function ()
+	{
+		var aLi = document.getElementsByTagName('li');
+
+		for ( var i = 0;i<aLi.length;i++) {
+
+			if(i%2==0) //0 , 2, 4,6,8....
+			{
+				aLi[i].style.backgroundColor = '#ccc'
+			}
+			else
+			{
+				aLi[i].style.backgroundColor = '#f3f3f3'
+			}
+		}
+	}
+</script>
+<body>
+	<ul>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+</body>
+</html>

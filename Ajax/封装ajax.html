@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+window.onload = function ()
+{
+
+		function ajax ( method,url,json,fnSuccess,fnErr )
+		{
+			  if (window.XMLHttpRequest)
+			  {  // code for IE7+, Firefox, Chrome, Opera, Safari
+			  	var oAjax = new XMLHttpRequest();
+			  }
+			  else
+			  {  // code for IE6, IE5
+			  	var oAjax = new ActiveXObject("Microsoft.XMLHTTP");
+			  }
+			  // alert(oAjax)  //=>object
+
+			  // 连接服务器  //+时间解决缓存问题
+			  oAjax.open(method,url,true)
+			  //发送请求
+			  if(method=="post")
+			  {
+			  	oAjax.setRequestHeader("Content-type","application/x-www-form-urlencoded"); //post 必须
+			  }
+			  if(json){
+			  	oAjax.send(json)
+			  }
+			  else
+			  {
+			  	oAjax.send(null)
+			  }
+			  // oAjax.send({username : "aaa",password : 111})    post请求数据  get也可以
+
+			  //接收返回
+			  oAjax.onreadystatechange = function ()
+			  {
+			  	if(oAjax.readyState == 4) //读取完成
+			  	{
+			  		if( oAjax.status == 200 ) //成功
+			  		{
+			  			var res = oAjax.responseText
+			  			fnSuccess(res)
+			  		}
+			  		else
+			  		{
+			  			if(fnErr)
+			  			{
+			  				fnErr(oAjax.status)
+			  			}
+			  		}
+			  	}
+			  }
+		}
+
+		ajax("post",'a.txt',{name:"aaa",pass:123},function(res){
+			console.log(res)
+		})
+}
+</script>
+</head>
+<body>
+
+</body>
+</html>

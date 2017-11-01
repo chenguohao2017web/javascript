@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		//思路：1.先创建一个空数组，
+		//      2.然后将要排序的数组赋值到这个数组里
+		//      3.通过sort（）方法将要比较的东西作处理
+		//      4.最后循环这个新数组，并且将内部的元素重新appendChild就可以了
+		window.onload = function ()
+		{
+			var oBtn = document.getElementById('btn1')
+			var oTab = document.getElementById('tab1')
+
+			oBtn.onclick = function ()
+			{
+				var arr = []
+				var aRows = oTab.tBodies[0].rows
+
+				for ( var i = 0 ; i < aRows.length; i++)
+				{
+					arr[i] = aRows[i]
+				}
+
+				arr.sort(function(tr1,tr2){
+					var n1 = tr1.cells[0].innerHTML
+					var n2 = tr2.cells[0].innerHTML
+
+					return n1-n2
+				})
+
+				for (var i = 0; i < arr.length; i++)
+				{
+					oTab.tBodies[0].appendChild(arr[i])
+				}
+			}
+
+		}
+	</script>
+</head>
+<body>
+	<input type="button" name="" value="排序" id="btn1">
+	<table border="1" width="500" id="tab1">
+		<thead>
+			<td>id</td>
+			<td>name</td>
+		</thead>
+		<tbody>
+			<tr>
+				<td>9</td>
+				<td>aaa</td>
+			</tr>
+			<tr>
+				<td>5</td>
+				<td>aaa</td>
+			</tr>
+			<tr>
+				<td>77</td>
+				<td>aaa</td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>aaa</td>
+			</tr>
+			<tr>
+				<td>6</td>
+				<td>aaa</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

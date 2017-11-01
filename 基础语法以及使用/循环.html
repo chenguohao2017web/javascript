@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<script>
+var name = 'abc';
+var sex = 'boy'
+//switch循环
+switch(sex)
+{
+	case 'boy':
+	   alert(name+'boy,hello');
+	   break;
+
+	case 'girl':
+		alert(name + 'girl,hello');
+		break;
+
+	default:
+		alert(name + 'hello');
+}
+
+// 三元运算符
+// 条件？语句1 ：语句2 =>条件为真执行语句1，否则执行语句i2
+var a = 55;
+a % 2 == 0 ? alert('双数') : alert('单数')
+
+//循环特：break  continue 
+
+for (var i = 0 ; i < 5 ; i++)
+{
+	if(i==2)
+	{
+		//break;  //整个循环跳出去
+		continue; //不中断整个循环，只中断本次，继续执行后面
+	}
+		console.log(i)
+}
+</script>
+<body>
+	
+</body>
+</html>

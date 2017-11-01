@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>计算器</title>
+</head>
+<!-- parseInt() 转为整数 -->
+<!-- parseFloat() 转为小数 -->
+<script>
+	window.onload = function()
+	{
+		var aInput = document.getElementsByTagName('input')
+		var one = aInput[0]
+		var two = aInput[1]
+		var out = aInput[2]
+		var btn = document.getElementById('out')
+
+		btn.onclick = function()
+		{	
+			var n1 = parseInt(one.value)
+			var n2 = parseInt(two.value)
+			if(isNaN(n1))
+			{
+				alert("第一个必须为数字")
+			}
+			else if(isNaN(n2))
+			{
+				alert("第二个必须为数字")
+			}
+			else
+			{
+
+				out.value = n1 + n2
+			}
+		}
+	}
+
+</script>
+<body>
+	<input type="text" name=""> +
+	<input type="text" name=""> <button id="out">=</button>
+	<input type="text" name="">
+</body>
+</html>

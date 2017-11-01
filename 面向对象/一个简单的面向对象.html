@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		function CreateParsent (name,age)   //构造函数  类名函数
+		{
+			this.name = name
+			this.age = age
+		}
+
+		//在原型上添加方法
+		CreateParsent.prototype.showName = function ()
+		{
+			alert('my name is ' + this.name)
+		}
+
+		var a = new CreateParsent('kkk',20) //创建对象通过new
+
+		alert(a.name)
+		alert(a.age)
+
+		a.showName()  //原型调用  如果构造函数有就用，没有就找原型
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

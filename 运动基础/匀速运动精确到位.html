@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		#div1{width: 100px;height: 100px;background: red;position: absolute;top: 0;left:0;}
+		#div2,#div3 {width: 1px;height: 500px;background: black;position: absolute;top:0;}
+		#div2 {
+			left:300px;
+		}
+		#div3 {
+			left:500px;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload = function () {
+			var oBtn1 = document.getElementById('btn1')
+			var oBtn2 = document.getElementById('btn2')
+			var oDiv = document.getElementById('div1')
+			var timer = null
+
+			oBtn1.onclick = function ()
+			{
+				star(oDiv,300)
+			}
+			oBtn2.onclick = function ()
+			{
+				star(oDiv,500)
+			}
+
+			function star(obj,iTarget)
+			{
+				clearInterval(timer)
+				timer = setInterval(function(){
+					var speed = 0
+					if(obj.offsetLeft > iTarget)
+					{
+						speed = -7
+					}
+					else
+					{
+						speed = 7
+					}
+					//如何目标值减去div的偏离值的绝对值 已经小于这个速度值  那就当作已经到达
+					if(Math.abs(iTarget-oDiv.offsetLeft) <= 7)
+					{
+						clearInterval(timer)
+						oDiv.style.left = iTarget + 'px'  //手动设置到达
+					}
+					else
+					{
+						oDiv.style.left = oDiv.offsetLeft + speed + 'px'
+					}
+				},30)
+			}
+		}
+	</script>
+</head>
+<body>
+	
+	<div id="div1"></div>
+	<div id="div2"></div>
+	<div id="div3"></div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<button id="btn1">到300</button>
+	<button id="btn2">到500</button>
+</body>
+</html>

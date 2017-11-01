@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		window.onload = function ()
+		{
+			var oBtn = document.getElementById('btn1')
+
+			oBtn.onclick = function ()
+			{
+				var oAjax;
+				if (window.XMLHttpRequest)
+			  {  // code for IE7+, Firefox, Chrome, Opera, Safari
+			  	oAjax = new XMLHttpRequest();
+			  }
+			  else
+			  {  // code for IE6, IE5
+			  	oAjax = new ActiveXObject("Microsoft.XMLHTTP");
+			  }
+			  // alert(oAjax)  //=>object
+
+			  // 连接服务器  //+时间解决缓存问题
+			  oAjax.open('POST','a.txt?t='+new Date().getTime(),true)
+
+
+			  //发送请求
+			  oAjax.setRequestHeader("Content-type","application/x-www-form-urlencoded"); //post 必须
+			  oAjax.send({name:"aaa",age:18})
+			  // oAjax.send({username : "aaa",password : 111})    post请求数据  get也可以
+
+			  //接收返回
+			  oAjax.onreadystatechange = function ()
+			  {
+			  	if(oAjax.readyState == 4) //读取完成
+			  	{
+			  		if( oAjax.status == 200 ) //成功
+			  		{
+			  			var res = oAjax.responseText
+			  			console.log(res)
+			  		}
+			  		else
+			  		{
+			  			alert('请求失败')
+			  		}
+			  	}
+			  }
+			}
+		}
+	</script>
+</head>
+<body>
+	<input type="button" value="请求" id="btn1" name="">
+</body>
+</html>

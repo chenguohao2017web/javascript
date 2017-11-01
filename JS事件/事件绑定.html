@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		// IE : attachEvent("onclick",fn)  绑定
+		//      detachEvent("onclick",fn)  解除绑定
+
+		//谷歌 ：addEventListener('click',fn,false)  事件绑定，冒泡
+		//谷歌 ：addEventListener('click',fn,true)  事件绑定，捕获
+		//谷歌 ：removeEventListener('click',fn,true/false)  解除绑定
+
+		window.onload = function ()
+		{
+			var oBtn = document.getElementById('btn1')
+			/*
+			if( oBtn.attachEvent )
+			{
+				oBtn.attachEvent('onclick',function()
+				{
+					console.log(this)
+				})
+			}
+			else
+			{
+				oBtn.addEventListener('click',function()
+				{
+					console.log(this)
+				})
+				
+			}
+			*/
+			myAddEvent( oBtn,'click',function(){
+				console.log(this)
+			} )
+
+		}
+
+		function myAddEvent( obj,ev,fn )
+		{
+			if(obj.attachEvent)
+			{
+				obj.attachEvent("on"+ev,fn)
+			}
+			else
+			{
+				obj.addEventListener(ev,fn)
+			}
+		}
+	</script>
+</head>
+<body>
+	<input type="button"  id="btn1" name="" value="submit">
+</body>
+</html>

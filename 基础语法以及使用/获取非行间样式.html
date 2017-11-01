@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+	div {
+		width: 100px;height: 100px;background: #ccc;
+	}
+</style>
+<script type="text/javascript">
+	window.onload = function()
+	{
+		var oDiv = document.getElementById('div1')
+
+		if(oDiv.currentStyle)
+		{
+			// ie 浏览器 obj.currentStyle.width
+			alert(oDiv.currentStyle.width)
+		}
+		else
+		{
+			// Chrom 浏览器 getComputdeStyle(obj,null).width
+			alert(getComputedStyle(oDiv,false).width)
+		}
+
+		alert(getStyle(oDiv,'backgroundColor'))
+	}
+
+
+	//封装兼容
+	function getStyle(obj,name)
+	{
+		if(obj.currentStyle)
+		{
+			return obj.currentStyle[name]
+		}
+		else
+		{
+			return getComputedStyle(obj,null)[name]
+		}
+	}
+</script>
+<body>
+<div id="div1"></div>	
+</body>
+</html>

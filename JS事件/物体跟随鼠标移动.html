@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		#div1 {width: 300px;height: 300px;background: red;position: absolute;left:0;top:0;}
+	</style>
+	<script type="text/javascript">
+		window.onload = function ()
+		{
+			var oDiv = document.getElementById('div1')
+			document.onmousemove = function (e) 
+			{	
+
+				var scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+				var ev = e || event
+				// oDiv.style.left = ev.clientX +'px'
+				// oDiv.style.top = scrollTop + ev.clientY +'px'
+				var pos = getPost(ev)
+				oDiv.style.left = pos.x + 'px'
+				oDiv.style.top = pos.y + 'px'
+			}
+		}
+		
+		function getPost(ev)
+		{
+			var scrollTop = document.documentElement.scrollTop|| document.body.scrollTop
+			var scrollLeft = document.documentElement.scrollLeft|| document.body .scrollLeft
+
+			return { x:ev.clientX + scrollLeft, y:ev.clientY + scrollTop }
+		}
+	</script>
+</head>
+<body style="height: 3000px">
+	<div id="div1"></div>
+</body>
+</html>

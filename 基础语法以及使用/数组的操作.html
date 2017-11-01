@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<script type="text/javascript">
+	var arr=[1,2,3,4,5]
+
+	arr.push(6);  //从尾部添加
+	console.log('push 尾部添加 '+arr);
+
+	arr.unshift(0);
+	console.log('unshift 头部添加 '+ arr)
+
+	arr.shift();
+	console.log('shift 头部删除 ' + arr)
+
+	arr.pop();
+	console.log('pop 尾部删除 '+ arr)
+
+	//如何想从中间添加删除
+	// splice(开始，长度，元素)
+	var arr1 = [1,2,3,4,5,6];
+	arr1.splice(2,3);
+	console.log('splice(2,3)  '+arr1)  //=>1,2,6 从下标2开始删除，删除3个
+
+	var arr2 = [1,2,3,4,5,6];
+	arr2.splice(2,0,'a','b')
+	console.log('splice(2,0,obj,obj)  ' +arr2)  //=>从下标2之前开始，删除0个，添加两个元素
+
+	var arr3 = [1,2,3,4,5,6];
+	arr3.splice(2,2,'a','b')
+	console.log('splice(2,2,"a","b")  ' + arr3)  //=>从下标2开始，删除两个元素，在重新添加两个元素
+
+
+	//数组的连接 concat
+	var a=[1,2]
+	var b=[3,4]
+	var c=[5,6]
+	console.log(a.concat(b,c))  //=>  a数组连接b数组   arr.concat(arr1,arr2)
+
+	//数组变字符串  join  
+	var arr4=[1,2,3]
+	console.log(arr4.join('-'))  //=> 通过join吧数组通过-连接成一个string
+
+	//排序数组 sort
+	var arr5 = ['b','a','z','f']
+	console.log(arr5.sort())   //=>按字母a-z排序
+
+	var arr6 = [12,8,99,19,112]  //=>添加比较函数
+	arr6.sort(function(n1,n2){
+		/*
+		if(n1<n2)
+		{
+			return -1;
+		}
+		else if(n1>n2)
+		{
+			return 1;
+		}
+		else
+		{
+			return 0;
+		}
+		*/
+		return n1-n2   //=>从小到大   n2-n1从大到小
+
+	})
+	console.log(arr6)
+</script>
+<body>
+	
+</body>
+</html>

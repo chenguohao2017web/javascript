@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<script type="text/javascript">
+	//string.charAt(下标)   =>返回字符串
+	function toDou(n)
+	{
+		if(n<10)
+		{
+			return '0' + n  //返回字符串
+		}
+		else
+		{
+			return '' + n   //返回字符串
+		}
+	}
+	window.onload = function()
+	{
+		setInterval(time,1000)
+		function time(){
+			var aBtn = document.getElementsByTagName('button')
+			var oDate = new Date();
+
+			var hour = oDate.getHours();
+			var min = oDate.getMinutes();
+			var sec = oDate.getSeconds();
+
+			var str = toDou(hour)+toDou(min)+toDou(sec)
+
+					//console.log(str)  //=> '123454'
+
+					for(var i = 0;i<aBtn.length;i++)
+					{
+						aBtn[i].innerHTML =  str.charAt(i)
+					}
+		}
+
+		time()	
+	}
+		</script>
+		<body>
+			<button>0</button>
+			<button>1</button>
+			:
+			<button>2</button>
+			<button>0</button>
+			:
+			<button>3</button>
+			<button>0</button>
+		</body>
+		</html>

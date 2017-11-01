@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		div {width: 100px;height: 100px;background: red;margin:10px;filter:alpha(opacity=30);opacity:0.3;}
+	</style>
+	<script type="text/javascript">
+		// 获取非行间样式
+		function getStyle(obj,attrName)
+		{
+			if(obj.currentStyle)
+			{
+				return obj.currentStyle[attrName]
+			}
+			else
+			{
+				return getComputedStyle(obj,false)[attrName]
+			}
+		}
+
+		//运动框架主体  startMove( obj,{attr:iTarget,attr:iTarget},callback )
+		function startMove(obj,json,callback)
+		{
+			clearInterval(obj.timer)  
+			obj.timer = setInterval( function () {
+
+				for( var attr in json )
+				{
+					//解决opacity兼容属性问题
+					var current = 0
+					if ( attr == 'opacity' )
+					{
+						//Math.round => 将计算机误差四舍五入
+						 current = Math.round( parseFloat ( getStyle( obj,attr ) ) * 100 )    // 0.3 => 30 opacity
+					}
+					else
+					{
+						current = parseInt( getStyle( obj,attr ) )   //其他属性
+					}
+					var speed = ( json[attr] - current )/8
+					speed = speed > 0 ? Math.ceil( speed ) : Math.floor( speed )
+
+					if( json[attr] == current )
+					{
+						clearInterval( obj.timer )
+
+						if( callback )
+						{
+							callback()
+						}
+					}
+					else
+					{
+						if ( attr == 'opacity' )
+						{
+							obj.style.filter = 'alpha(opacity'+ ( current + speed ) +')'
+							obj.style.opacity = (current + speed) / 100   //返回小数给高版本浏览器
+						}
+						else
+						{
+							obj.style[attr] = current + speed + 'px'
+						}
+					}
+
+				} //for in 循环结束
+
+			},30 )
+
+		}
+
+		window.onload = function ()
+		{
+			var oDiv = document.getElementById('div1')
+
+			oDiv.onmouseover = function ()
+			{
+				startMove ( oDiv,{'width':1,'height':300,opacity:100} )
+			}
+
+			
+		}
+	</script>
+</head>
+<body>
+	<div id="div1"></div>
+	<div></div>
+	<div></div>
+</body>
+</html>

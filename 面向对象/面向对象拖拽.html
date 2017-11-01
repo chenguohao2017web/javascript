@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		#div1 { width: 200px;height: 200px;background: red;position: absolute; }
+		#div2 { width: 100px;height: 100px;background: green;position: absolute; }
+	</style>
+	<script type="text/javascript">
+		function Drog(id)  
+		{	
+			this.disX=0
+			this.disY=0
+			var _this = this
+			this.oDiv = document.getElementById(id)
+			this.oDiv.onmousedown = function (ev){
+				_this.fnDown(ev)
+
+				return false
+			}
+		}
+
+		Drog.prototype.fnDown = function(e)
+		{	
+			var _this = this
+			var ev = e || event
+			this.disX = ev.clientX - this.oDiv.offsetLeft
+			this.disY = ev.clientY - this.oDiv.offsetTop
+
+			document.onmousemove = function (ev){
+				_this.fnMove(ev)
+			}
+			document.onmouseup = function (ev){
+				_this.fnUp(ev)
+			}
+
+		}
+
+		Drog.prototype.fnMove = function(e)
+		{
+			var ev = e || event
+			var l = ev.clientX - this.disX
+			var t = ev.clientY - this.disY
+
+			this.oDiv.style.left = l + 'px'
+			this.oDiv.style.top = t + 'px'
+		}
+
+		Drog.prototype.fnUp = function ()
+		{
+			document.onmousemove = null
+			document.onmousenull = null
+		}
+
+		// 继承
+		function LimitDrog(id)
+		{
+			Drog.call(this,id)
+		}
+
+		for( var i in Drog.prototype)
+		{
+			LimitDrog.prototype[i] = Drog.prototype[i]
+		}
+
+		//修改部分代码
+		LimitDrog.prototype.fnMove = function(e)
+		{
+			var ev = e || event
+			var l = ev.clientX - this.disX
+			var t = ev.clientY - this.disY
+
+			if(l<0)
+			{
+				l=0
+			}
+			else if ( l > document.documentElement.clientWidth - this.oDiv.offsetWidth )
+			{
+				l = document.documentElement.clientX - this.oDiv.offsetWidth
+			}
+			if(t<0)
+			{
+				t=0
+			}
+			else if ( t > document.documentElement.clientHeight - this.oDiv.offsetHeight )
+			{
+				t = document.documentElement.clientHeight - this.oDiv.offsetHeight
+			}
+			this.oDiv.style.left = l + 'px'
+			this.oDiv.style.top = t + 'px'
+		}
+
+
+		window.onload = function ()
+		{
+			new Drog('div1')
+			new LimitDrog('div2')
+		}
+	</script>
+</head>
+<body>
+	<div id="div1">1</div>
+	<div id="div2">2</div>
+</body>
+</html>

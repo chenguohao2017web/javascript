@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		//当用户在页面右键鼠标时候
+		document.oncontextmenu = function (e)
+		{
+			var oDiv = document.getElementById('div1')
+			var ev = e || event
+
+			oDiv.style.display = "block"
+			oDiv.style.left = ev.clientX +'px'
+			oDiv.style.top = ev.clientY +'px'
+			return false  //阻止浏览器 右键默认行为
+		}
+		document.onclick = function ()
+		{
+			var oDiv = document.getElementById('div1')
+			oDiv.style.display = 'none'
+		}
+		
+
+		window.onload = function ()
+		{
+			var oDiv = document.getElementById('div1')
+			var aLi = oDiv.getElementsByTagName('ul')[0].getElementsByTagName('li')
+
+			for (var i = 0 ; i < aLi.length; i++)
+			{
+				aLi[i].onmouseover = function ()
+				{
+					for (var j = 0 ; j < aLi.length; j ++)
+					{
+						aLi[j].style.background = '#ccc'
+					}
+					this.style.background = 'yellow'
+				}
+			}
+		}
+
+
+	</script>
+	<style type="text/css">
+	*,ul,li{margin: 0;padding: 0;list-style: none}
+	#div1 {position: absolute;background: #ccc;display: none;}
+</style>
+</head>
+<body>
+	<div id="div1">
+		<ul>
+			<li>12323</li>
+			<li>dfdfd</li>
+			<li>aaaaa</li>
+			<li>fdfdfd</li>
+		</ul>
+	</div>
+</body>
+</html>

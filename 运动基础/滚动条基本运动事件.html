@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		#div1 {
+			width: 100px;
+			height: 100px;
+			background: red;
+			position: absolute;
+		}
+		body {
+			height: 2000px;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onscroll = function ()
+		{
+			var oDiv = document.getElementById('div1')
+			
+			var scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+
+			// oDiv.style.top = (document.documentElement.clientHeight - oDiv.offsetHeight)/2 + scrollTop + 'px'
+			// oDiv.style.top = (document.documentElement.clientHeight - oDiv.offsetHeight)/2 + scrollTop + 'px'
+			star(oDiv,parseInt((document.documentElement.clientHeight - oDiv.offsetHeight)/2 + scrollTop))
+		}
+
+		var timer = null
+
+		function star (obj,iTarget)
+		{
+			clearInterval(timer)
+			timer = setInterval(function(){
+				var speed = (iTarget - obj.offsetTop)/4
+				speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed)
+				if(iTarget == obj.offsetTop)
+				{
+					clearInterval(timer)
+				}
+				else
+				{
+					document.getElementsByName('name')[0].value = obj.offsetTop
+					obj.style.top = obj.offsetTop + speed + 'px'
+				}
+			},30)
+		}
+	</script>
+</head>
+<body>
+	<input type="text" name="name" style="position: fixed;top: 0;left: 0">
+	<div id="div1"></div>
+</body>
+</html>

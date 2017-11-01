@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		// 浏览器类型，内容
+		// alert(window.navigator.userAgent) 
+
+
+		//当前页面的地址  转码后
+		// alert(window.location)   
+
+		window.onload = function ()
+		{
+			var oBtn = document.getElementById('btn1')
+
+			oBtn.onclick = function ()
+			{
+				window.location = "http://www.baidu.com"
+				// 相当于 window.open(url,_salf) 在当前页面打开新窗口
+			}
+		}
+	</script>
+</head>
+<body>
+	<input type="button" value="aaa" name="" id="btn1">
+</body>
+</html>

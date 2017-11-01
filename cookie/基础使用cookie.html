@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		//alert(document.cookie)   //document的属性
+
+		// COOKIE格式  类json    名字=值
+		
+
+		// 设置过期时间
+		var oDate = new Date()
+		oDate.setDate(oDate.getDate() + 14)  //十四天后过期 返回十四天后的日期
+
+		document.cookie = "user = chen;expires=" + oDate
+		
+		// alert(document.cookie)
+
+
+		function setCookit(name,value,iDay)
+		{	
+			var oDate = new Date()
+
+			oDate.setDate(oDate.getDate() + iDay)
+
+			document.cookie = name +' = '+ value +';expires = ' + iDay
+		}
+
+		setCookit('userName','aaa',365)
+		setCookit('userName','bbb',10)
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

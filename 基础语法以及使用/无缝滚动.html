@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	*{margin: 0;padding: 0;}
+	#div1 ul li{width: 200px;height: 100px;float: left;list-style: none;line-height: 100px;text-align: center;color:red;}
+	#div1 {width: 800px;height:100px;margin:100px auto;position: relative;background: red;overflow: hidden}
+	#div1 ul{position: absolute;top: 0;left: 0}
+	#btn1 {
+		top: 100px;
+		left: 76px;
+	}
+	#btn2 {
+		top: 100px;
+		right:82px;
+	}
+	button { width: 100px;height: 100px;position: absolute;}
+</style>
+<script type="text/javascript">
+	window.onload = function ()
+	{
+		var oDiv = document.getElementById('div1')
+		var oUl = oDiv.getElementsByTagName('ul')[0]
+		var aLi = oUl.getElementsByTagName('li')
+		var speed = -2
+		var timer = null
+
+		timer = setInterval(move,30)
+
+		oUl.innerHTML += oUl.innerHTML
+		oUl.style.width = aLi[0].offsetWidth * aLi.length + 'px'
+
+		function move()
+		{
+			if(oUl.offsetLeft < -oUl.offsetWidth/2)
+			{
+				oUl.style.left = 0
+			}
+
+			if(oUl.offsetLeft > 0)
+			{
+				oUl.style.left = -oUl.offsetWidth/2 + 'px'
+			}
+			oUl.style.left = oUl.offsetLeft + speed + 'px'
+		}
+
+		var btnLeft = document.getElementById('btn1')
+		var btnRight = document.getElementById('btn2')
+
+		btnLeft.onmouseover = function ()
+		{
+			speed = -2
+		}
+
+		btnRight.onmouseover = function ()
+		{
+			speed = 2
+		}
+	}
+</script>
+</head>
+<body>
+	<div id="div1">
+		<ul>
+			<li style="background:black ">img1</li>
+			<li style="background:blue ">img2</li>
+			<li style="background: pink">img3</li>
+			<li style="background: skyblue">img4</li>
+		</ul>
+	</div>
+	<button id="btn1">左</button>
+	<button id="btn2">右</button>
+</body>
+</html>
