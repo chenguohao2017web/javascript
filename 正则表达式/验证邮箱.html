@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		// abcd_efg@fjdkjf123.com
+		// 英文数字下划线+@+英文数字+.com
+
+		//行首 ^
+		//行尾 $
+		window.onload = function ()
+		{
+			var oBtn = document.getElementById('btn1')
+			var oTxt = document.getElementById('txt1')
+			oBtn.onclick = function()
+			{	
+
+				var RegExp=/^\w+@[a-z0-9]+\.[a-z]+$/i
+				//一串英文数字下划线多个   \w+
+				//@
+				//一串英文加数字[a-z0-9A-Z]
+				// .要转义  \.
+				//一串英文com  [a-z]+
+				if( RegExp.test(oTxt.value) ) //如果合法就返回true
+				{
+					//只要字符串有一部分符合要求，就返回true
+					alert('success')
+				}
+				else
+				{
+					alert('error')
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+	<input type="text" id="txt1">
+	<input type="button" id="btn1" value="验证">
+</body>
+</html>

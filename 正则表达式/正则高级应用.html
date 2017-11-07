@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		//方括号 []
+		// [abc]pc  可以随便取谁都可以  => apc bpc cpc  任选一个
+		var str = 'apc xpc ppc bpc spc tpc';
+		var RegExp = /[apx]pc/g;   //可以取方括号任意一个元素作为匹配
+		console.log(str.match(RegExp))  //如果都有则返回一个数组  
+
+		// 找出所有得数字
+		var str = '123 fff  84 erjk222 -==333';
+		var RegExp = /[0-9]/g
+		console.log(str.match(RegExp))   //返回单个数字切片
+
+		//[^a-z]  除了字母a-z其他都要，^取反
+		//[^a-z0-9] 匹配除了英文和数字以外其他得东西
+
+
+		//任意字符串 .   
+		// 过滤html标签得方法
+		// var RegExp = /<[^<>]+>/g
+
+		// \d数字                 [0-9]   
+		// \w 英文，数字。下划线  [a-z0-9_]
+		// \s 空白字符
+
+		// \D  除了0-9     [^0-9]
+		// \W  除了英文，数字。下划线     [^a-z0-9_]
+		// \S  除了空白字符    
+
+		//量词 个数
+		// {n}   正好出现n次
+		// \d{8}  正好出现8个数字
+
+		//8位电话号码  /[1-9]/d{7}/   第一位不能为0  然后7位数字
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		var re = new RegExp('a');  //js风格
+		var re = /a/;              //perl风格
+		var str = 'abcdef';
+
+		console.log(str.search(re))  // 0 第一位
+
+		// 大小写处理
+		var str = 'Abcdef';
+		var RegExp = /a/i;      //忽略大小写  i
+		console.log(str.search(RegExp))
+
+		//找出第一个出现得数字
+		var str = 'adsf 43 23 vcvcdfkjkdf';
+		var RegExp = /\d/    //=>  \d 找出数字
+		console.log(str.search(RegExp))   //返回第一个数字下标
+
+		//match 返回字符串   search返回下标  \d
+		var str = 'asdf 34 5656 vdf33'
+		var RegExp = /\d/g;    //g 找出所有得数字单个切片   /d
+		console.log(str.match(RegExp))
+
+		//match 返回字符串   \d\d
+		var str = 'asdf 34 5656 vdf33'
+		var RegExp = /\d\d/g;    //g 找出所有2位数字切片   /d
+		console.log(str.match(RegExp))
+
+		//match 返回字符串   \d+
+		var str = 'asdf 34 5656 vdf33'
+		var RegExp = /\d+/g;    //g 找出所有若干数字 保持数字连续 /d+
+		console.log(str.match(RegExp))
+
+		//replace
+		var str='abc aaa erw';
+		console.log(str.replace('a','0'))   //仅仅替换了第一个
+
+		//replace配合正则
+		var str='abc aaa erw';
+		var RegExp = /a/g;                  //替换所有  g全局匹配
+		console.log(str.replace(RegExp,'0'))
+
+		// 敏感词过滤例子
+		window.onload = function()
+		{	
+
+			var oTxt1 = document.getElementById('txt1')
+			var oTxt2 = document.getElementById('txt2')
+			var oBtn = document.getElementById('btn1')
+			var RegExp = /中国|百度|淘宝/g
+			oBtn.onclick = function ()
+			{
+				oTxt2.value = oTxt1.value.replace(RegExp,"****")
+			}
+		}
+	</script>
+</head>
+<body>
+<textarea name="" id="txt1" cols="30" rows="10">这是中国淘宝网公司网站,在中国材料网上注册的网站... 公司名称: 中国淘宝网 (未在本网认证) 公司地址: 北京市 联系人: bmw 联系电话: +86-1585-1305208 ...</textarea>	
+<input type="button" value="过滤" id="btn1">
+<textarea name="" id="txt2" cols="30" rows="10"></textarea>	
+</body>
+</html>

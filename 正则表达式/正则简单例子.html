@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		var str = 'abcde'
+		//str.search('str') 返回下标index 
+		console.log(str.search('c'))  //=> 2  找不到返回-1  
+		//str.substring(2,5) 返回字符串从首尾开始到末尾，不包括末尾
+		console.log(str.substring(2,5))
+		//str.chatrt(3)   返回字符串
+		console.log(str.charAt(3))
+
+		var str = '12-56-aaa-99'
+		console.log(str.split('-')) //通过某个参数拆分成数组
+
+		var str = '12 fff 87 er334 233 -=-fa80';
+		//找出所有数字
+		// 原生JS
+		var tmp='';
+		var arr=[]
+		for(var i=0;i<str.length;i++)
+		{
+			if(str.charAt(i)>='0' && str.charAt(i)<='9')
+			{
+				// 数字
+				tmp += str.charAt(i)
+			}
+			else
+			{
+				if(tmp)
+				{
+					arr.push(tmp);
+					tmp='';
+				}
+			}
+		}
+		if(tmp)
+				{
+					arr.push(tmp);
+					tmp='';
+				}
+		console.log(arr)
+
+		//正则
+		var str = '12 fff 87 er334 233 -=-fa80';
+		console.log(str.match(/\d+/g));
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
