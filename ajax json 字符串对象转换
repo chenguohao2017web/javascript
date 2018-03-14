@@ -1,1 +1,3 @@
-JSON.stringify(obj)将JSON转为字符串。JSON.parse(string)将字符串转为JSON格式；
+JSON.stringify(obj)将JSON转为字符串。
+
+JSON.parse(string)将字符串转为JSON格式；
