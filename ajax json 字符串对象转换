@@ -1,3 +1,15 @@
-JSON.stringify(obj)将JSON转为字符串。
-
-JSON.parse(string)将字符串转为JSON格式；
+localStorage存储数据的格式都是以字符串的形式来存储的，  
+  
+存储数组对象的方式就是将数组对象转为字符串，在读取的时候再将字符串转成数组对象  
+  
+操作的方式：  
+  
+存：  
+    var obj = {"name":"xiaoming","age":"16"}  
+    localStorage.setItem("userInfo",JSON.stringify(obj));  
+取：  
+    var user = JSON.parse(localStorage.getItem("userInfo"))  
+删除：  
+    localStorage.remove("userInfo);  
+清空：  
+    localStorage.clear();  
