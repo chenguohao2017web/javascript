@@ -1,0 +1,22 @@
+1）使用
+用法1：
+function animate() { 
+  //done();
+  requestAnimationFrame(animate); 
+} 
+requestAnimationFrame(animate);
+注意函数里的requestAnimationFrame(animate) 
+  有了这句话，就形成了递归调用，设置应为这个函数多用在持续的动画中，可以自由处理要不要这句话。 
+2. 用法2：
+
+var globalID; 
+function animate() { 
+  // done(); 一直运行
+  globalID=requestAnimationFrame(animate); 
+  // Do something animate 
+} 
+globalID=requestAnimationFrame(animate);//开始
+cancelAnimationFrame(globalID);//结束
+
+
+https://blog.csdn.net/w2765006513/article/details/53843169
