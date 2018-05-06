@@ -1,0 +1,16 @@
+首先 得在你要带参数的router-link to="/test/ +'参数'"  
+或者绑定一个点击事件
+ handleClick(){
+    this.$router.push({
+      path:`/test/${参数}`
+    })
+ }
+ 
+ 路由配置:
+ routes:[{
+    path:'/test/:id',
+    component:xxxx
+ }]
+ 
+ 
+ 参数路由页面:  通过this.$route.params获取 传递参数的这个 对象
