@@ -29,3 +29,16 @@
     }
     var dog = new Dog('Wang');
     dog.speak();
+
+
+function Animal(word) {
+  this.word = word;
+  this.say = function () {
+    console.log(this.word);
+  };
+}
+function Dog() {
+  Animal.call(this, 'wang');
+}
+const dog = new Dog();
+dog.say();
