@@ -1,0 +1,19 @@
+父组件通过 provide定义将要传递的参数
+export default {   
+  name: "Parent",   
+  provide: {    for: "demo"  },   
+  components:{    childOne   }  
+} 
+
+
+子组件可以通过inject获取父组件定义的对象  类似props  必须为数组  数组内的字符串为父组件对象的属性名
+export default {   
+  name: "childOne",   
+  inject: ['for'],   
+  data() {    
+    return {    
+        demo: this.for   
+      }   
+    },   
+  components: {    childtwo   }  
+} 
