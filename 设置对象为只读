@@ -1,0 +1,15 @@
+数据属性：
+【configurable】 能否通过delete删除属性从而重新定义属性    默认值 true
+【enumerable】   能否通过for-in循环返回属性              默认值 true
+【writable】     能否修改属性的值                       默认值 true
+【value】        这个属性的数值，                       默认值为undefined
+
+设置属性为只读：
+Object.defineProperty(属性所在的对象，属性名，数据属性描述符对象)
+
+如：
+var person = { };
+Object.defineProperty(person,name,{
+  writable: false,  //不可修改
+  value: "chenguohao"  //设置初始值
+})
