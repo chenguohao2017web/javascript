@@ -13,3 +13,21 @@ Object.defineProperty(person,name,{
   writable: false,  //不可修改
   value: "chenguohao"  //设置初始值
 })
+
+
+注意：
+每个对象都有一个访问器属性，他们是没有数据的，只有两个函数 
+如：
+var person = {
+  name: 'cgh'
+}
+Object.defineProperty(person,"type",{
+  get: function () {
+    return this.name
+  },
+  set: function (val) {
+     if (val !== this.name ) {
+      return this.name
+     }
+  }
+})
