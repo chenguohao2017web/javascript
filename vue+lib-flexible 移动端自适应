@@ -1,0 +1,19 @@
+http://hjingren.cn/2017/06/16/%E5%9F%BA%E4%BA%8Evue-cli%E9%85%8D%E7%BD%AE%E7%A7%BB%E5%8A%A8%E7%AB%AF%E8%87%AA%E9%80%82%E5%BA%94/
+
+npm install -g yarn 
+
+yarn add lib-flexible 
+yarn add px2rem-loader --dev
+
+//main.js
+import 'lib-flexible'
+
+//utils.js
+var px2remLoader = {
+    loader: 'px2rem-loader',
+    options: {
+      remUnit: 37.5 //根据设计稿设置 如果i6则需要设置75   默认37.5
+    }
+  }
+  
+  
