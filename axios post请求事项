@@ -1,0 +1,36 @@
+https://blog.csdn.net/wopelo/article/details/78783442
+
+post提交数据的四种编码方式
+
+1.application/x-www-form-urlencoded 
+
+this.$axios({
+    method:"post",
+    url:"/api/haveUser",
+    headers:{
+        'Content-type': 'application/x-www-form-urlencoded'
+    },
+    data:{
+        name:this.name,
+        password:this.password
+    },
+    transformRequest: [function (data) {
+        let ret = ''
+        for (let it in data) {
+          ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
+        }
+        return ret
+      }],
+}).then((res)=>{
+    console.log(res.data);
+})
+其中发挥关键作用的是headers与transformRequest。其中 headers 是设置即将被发送的自定义请求头。 
+transformRequest 允许在向服务器发送前，修改请求数据。这样操作之后，后台querystring.parse(decodeURIComponent(data))获取到的就是类似于{ name: 'w', password: 'w' }的对象。
+
+2.multipart/form-data 
+ajax的contentType参数等于multipart/form-data。
+
+3.application/json 
+axios默认
+
+4.text/xml 
