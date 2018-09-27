@@ -1,32 +1,26 @@
-https://www.cnblogs.com/anniey/p/6510911.html
+const cookie = {
+  set: function (key, val, time) { // 设置cookie方法
+    var date = new Date() // 获取当前时间
+    var expiresDays = time // 将date设置为n天以后的时间
+    date.setTime(date.getTime() + expiresDays * 24 * 3600 * 1000) // 格式化为cookie识别的时间
+    document.cookie = key + '=' + val + ';expires=' + date.toGMTString() // 设置cookie
+  },
+  get: function (key) { // 获取cookie方法
+    /* 获取cookie参数 */
+    var search = key + '='// 查询检索的值
+    var returnvalue = ''// 返回值
+    if (document.cookie.length > 0) {
+      var sd = document.cookie.indexOf(search)
+      if (sd !== -1) {
+        sd += search.length
+        var end = document.cookie.indexOf(';', sd)
+        if (end === -1) { end = document.cookie.length }
+        // unescape() 函数可对通过 escape() 编码的字符串进行解码。
+        returnvalue = unescape(document.cookie.substring(sd, end))
+      }
+    }
+    return returnvalue
+  }
+}
 
-
-//cname 名字
-        //cvalue 值
-        //exdays 时间            0.01大概25分钟
-        function setCookie(cname, cvalue, exdays) {
-            var d = new Date();
-            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-            var expires = "expires=" + d.toUTCString();
-         document.cookie = cname + "=" + cvalue + "; " + expires+"; path=/"   这个很重要代表在那个层级下可以访问cookie
-            console.log(d)
-        }
-
-    
-
-        //获取cookie
-        function getCookie(cname) {
-            var name = cname + "=";
-            var ca = document.cookie.split(';');
-            for(var i = 0; i < ca.length; i++) {
-                var c = ca[i];
-                while(c.charAt(0) == ' ') c = c.substring(1);
-                if(c.indexOf(name) != -1) return c.substring(name.length, c.length);
-            }
-            return "";
-        }
-
-        //删除 cookie
-        function clearCookie(name) {
-            setCookie(name, "", -1);
-        }
+export default cookie
